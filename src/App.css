@@ -1,0 +1,111 @@
+/* ---------------------------------------------------------------
+   "Spec sheet / blueprint" design system
+   Grounded in the subject: RPL = Rekayasa Perangkat Lunak
+   (Software ENGINEERING). Cards read like component spec sheets
+   pinned to graph paper, not generic SaaS cards.
+   --------------------------------------------------------------- */
+
+:root {
+  --paper: #f3f6fa;
+  --paper-line: #dbe4ee;
+  --ink: #16324a;
+  --ink-soft: #4c6478;
+  --accent: #2e7db8;      /* blueprint blue — primary/instrument accent */
+  --brass: #b8862e;       /* "excellent" tier, instrument brass */
+  --teal: #2f8f7c;        /* "good" tier / online status */
+  --rust: #b23a2e;        /* "need improvement" tier / offline status */
+  --channel-a: #1e90a6;   /* gender accent, channel A (cyan pencil) */
+  --channel-b: #c9722a;   /* gender accent, channel B (amber pencil) */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--ink);
+}
+
+.blueprint-page {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  min-height: 100vh;
+}
+
+.display-font {
+  font-family: "Space Grotesk", "IBM Plex Mono", sans-serif;
+}
+
+.label-caps {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Spec card with corner registration marks, like a drawing sheet */
+.spec-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #d9e2ea;
+  border-radius: 2px;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.spec-card:hover {
+  box-shadow: 0 6px 20px rgba(22, 50, 74, 0.1);
+  transform: translateY(-2px);
+}
+
+.spec-card::before,
+.spec-card::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.spec-card::before {
+  top: 6px;
+  left: 6px;
+  border-top: 2px solid var(--ink);
+  border-left: 2px solid var(--ink);
+  opacity: 0.55;
+}
+
+.spec-card::after {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 2px solid var(--ink);
+  border-right: 2px solid var(--ink);
+  opacity: 0.55;
+}
+
+.led-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.led-dot.online {
+  background: var(--teal);
+  box-shadow: 0 0 0 3px rgba(47, 143, 124, 0.18);
+}
+
+.led-dot.offline {
+  background: var(--rust);
+  box-shadow: 0 0 0 3px rgba(178, 58, 46, 0.16);
+}
+
+.title-block {
+  background: var(--ink);
+  border-bottom: 3px solid var(--accent);
+}
